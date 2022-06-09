@@ -4,6 +4,9 @@ class Category:
     self.amount = 0.0
     self.ledger = []
 
+  def __str_(self):
+    return ""
+
   def deposit(self, amount, description = ""):
     self.ledger.append({"amount": amount, "description": description})
     self.amount += amount
@@ -26,6 +29,10 @@ class Category:
     return self.amount
 
   def transfer(self, amount, category):
+    if self.withdraw(amount, "Transfer to " + category.name):
+      category.deposit(amount, "Transfer from " + self.name)
+      return True
+        
     return False
     
     
