@@ -4,9 +4,18 @@ class Category:
     self.amount = 0.0
     self.ledger = []
 
-  def __str_(self):
-    return ""
+  def __str__(self):
+    result = ""
+    result += self.name.center(30, '*') + "\n"
+    
+    for l in self.ledger:
+      result += l["description"][0:23].ljust(23, ' ')
+      result += str("{:>7.2f}".format(l["amount"])) + "\n"
+      
+    result += "Total: " + str(self.amount)
+    return result
 
+  
   def deposit(self, amount, description = ""):
     self.ledger.append({"amount": amount, "description": description})
     self.amount += amount
